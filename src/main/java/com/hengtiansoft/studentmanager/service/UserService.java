@@ -6,4 +6,5 @@ import com.hengtiansoft.studentmanager.domain.User;
 public interface UserService extends IService<User> {
     User findByUsername(String username);
     void register(User user) ;
+    boolean login(String username, String password);
 }

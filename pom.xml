@@ -75,6 +75,14 @@
             <version>2.2.0</version>
         </dependency>
 
+        <!-- 引入bcrypt 加密算法的依赖-->
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.4</version>
+        </dependency>
+
+
     </dependencies>
 
 <!--    <build>-->

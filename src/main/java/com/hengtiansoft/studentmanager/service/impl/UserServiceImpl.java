@@ -5,8 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hengtiansoft.studentmanager.domain.User;
 import com.hengtiansoft.studentmanager.mapper.UserMapper;
 import com.hengtiansoft.studentmanager.service.UserService;
-import com.hengtiansoft.studentmanager.utils.Md5Util;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.hengtiansoft.studentmanager.utils.BCryptUtil;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
@@ -28,7 +27,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public void register(User user) {
-        user.setPassword(Md5Util.md5(user.getPassword()));
+        user.setPassword(BCryptUtil.encrypt(user.getPassword()));
         save(user);
+    }
+
+    @Override
+    public boolean login(String username, String password) {
+        User user = findByUsername(username);
+        return BCryptUtil.verify(password, user.getPassword());
     }
 }
